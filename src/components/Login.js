@@ -35,7 +35,7 @@ class Login extends React.Component {
   		id: this.props.login.id,
   		passwd: this.props.login.passwd
   	}
-  	this.props.dispatch(execLogin(info));
+    this.props.dispatch(execLogin(info));
   }
 
   changeId(id) {

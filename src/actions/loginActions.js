@@ -5,14 +5,14 @@ import RNRestart from 'react-native-restart';
 export function changeId(id) {
 	return {
 		type: 'CHANGE_ID',
-		payload: { id: id }
+		id: id 
 	}
 }
 
 export function changePasswd(passwd) {
 	return {
 		type: 'CHANGE_PASSWD',
-		payload: { passwd: passwd }
+		passwd: passwd
 	}
 }
 
