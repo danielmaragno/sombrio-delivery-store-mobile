@@ -2,9 +2,10 @@ import React from 'react';
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { connect } from 'react-redux';
 import { AsyncStorage } from 'react-native';
+import OneSignal from 'react-native-onesignal';
 
 import { fetchOrders } from './actions/ordersActions';
-import { fetchUser } from './actions/userActions';
+import { fetchUser, registerPlayerId } from './actions/userActions';
 
 //
 // Login Navigator
@@ -66,6 +67,11 @@ class App extends React.Component {
 	        dispatch({type: 'FETCH_TOKEN', token: token})
 	        dispatch(fetchOrders(token));
 	        dispatch(fetchUser(token));
+
+	        OneSignal.addEventListener('ids', (device)=> {
+	          dispatch(registerPlayerId(token, device.userId));
+	        });
+	        OneSignal.addEventListener('received', this.handleNotification.bind(this));
 	    }
 
 		
@@ -77,6 +83,16 @@ class App extends React.Component {
 
 		
 	      
+	}
+
+	handleNotification(notification) {
+		const data = notification.payload.additionalData;
+		if(data && 'order' in data){
+			this.props.dispatch({
+				type: 'INSERT_ORDER',
+				order: data.order
+			})
+		}
 	}
 
 	componentWillMount() {

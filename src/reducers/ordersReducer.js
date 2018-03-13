@@ -10,7 +10,11 @@ export default function reducer(state=initialState, action) {
 			return {...state, orders: action.orders, ordersMap: action.ordersMap}
 		}
 		case 'INSERT_ORDER': {
-			const orders = [].concat([action.order._id], state.orders);
+			let orders = [].concat(state.orders);
+			if(state.orders.indexOf(action.order._id) < 0){
+				orders = [].concat([action.order._id], state.orders);
+			}
+
 			
 			let ordersMap = Object.assign({}, state.ordersMap);
 			ordersMap[action.order._id] = action.order;
