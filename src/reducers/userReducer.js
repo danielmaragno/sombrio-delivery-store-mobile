@@ -8,7 +8,8 @@ const initialState = {
 	open: null,
 	deliveryPrice: null,
 
-	openIsLoading: false
+	openIsLoading: false,
+	updateIsLoading: false
 }
 
 export default function reducer(state=initialState, action){
@@ -36,6 +37,12 @@ export default function reducer(state=initialState, action){
 		}
 		case 'SET_OPEN_IS_LOADING': {
 			return {...state, openIsLoading: action.openIsLoading}
+		}
+		case 'SET_USER_UPDATE_IS_LOADING': {
+			return {...state, updateIsLoading: action.updateIsLoading}
+		}
+		case 'SET_DELIVERY_PRICE': {
+			return {...state, deliveryPrice: action.deliveryPrice}
 		}
 	}
 

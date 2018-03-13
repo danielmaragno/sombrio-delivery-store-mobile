@@ -32,6 +32,20 @@ export function updatePosOpen(token, open) {
 	}
 }
 
+export function updatePos(token, data) {
+	return (dispatch) => {
+		dispatch({type: 'SET_USER_UPDATE_IS_LOADING', updateIsLoading: true});
+
+		request('/pos', 'PUT', {required_data: data}, token)
+
+		.then((response) => {
+			if(response.ok) {
+				dispatch({type: 'SET_USER_UPDATE_IS_LOADING', updateIsLoading: false});
+			}
+		})
+	}
+}
+
 export function registerPlayerId(token, player_id) {
 	return (dispatch) => {
 		request('/pos/player_id', 'POST', {player_id: player_id}, token)
