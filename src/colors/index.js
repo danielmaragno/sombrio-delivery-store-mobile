@@ -136,7 +136,7 @@ export const dataStyle = {
 }
 
 export const openTagStyle = {
-    open: {color: '#27ae60', text: 'ABERTO'}, 
+    open: {color: '#2ecc71', text: 'ABERTO'}, 
     closed: {color: '#c0392b', text: 'FECHADO'}
 }
 

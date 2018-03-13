@@ -26,10 +26,10 @@ export function execLogin(info) {
 		request('/auth/login', 'POST', {info: info})
 		.then(response => response.json())
 		.then((response) => {
-			
+			console.log(response);
 			// Set token and Item in permanent Storage.
 			AsyncStorage.setItem("token", response.token);
-			AsyncStorage.setItem("name", response.name);
+			AsyncStorage.setItem("name", response.user.name);
 
 			dispatch({type: 'EXEC_LOGIN_FULFILLED'});
 

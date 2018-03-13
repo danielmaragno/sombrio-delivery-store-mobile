@@ -1,15 +1,27 @@
 
+import Home from './components/Home';
 import Orders from './components/Orders';
 
 const routesList = [
+	{
+		key: 'Home',
+		screen: Home,
+		routeName: 'Home',
+		params: {
+			title: "Início",
+			leftIcon: {
+				name: 'home'
+			}
+		}
+	},
 	{
 		key: 'Orders',
 		screen: Orders,
 		routeName: 'Orders',
 		params: {
-			title: "Início / Pedidos",
+			title: "Pedidos",
 			leftIcon: {
-				name: 'home'
+				name: 'local-shipping'
 			}
 		}
 	}

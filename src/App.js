@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { AsyncStorage } from 'react-native';
 
 import { fetchOrders } from './actions/ordersActions';
+import { fetchUser } from './actions/userActions';
 
 //
 // Login Navigator
@@ -64,17 +65,17 @@ class App extends React.Component {
 			// Fetch token and stuff
 	        dispatch({type: 'FETCH_TOKEN', token: token})
 	        dispatch(fetchOrders(token));
+	        dispatch(fetchUser(token));
 	    }
 
+		
 		const id = await AsyncStorage.getItem('id');
-		dispatch({type: 'FETCH_ID', id: id}); // User ID
 		dispatch({type: 'CHANGE_ID', id: id}); // Login ID
-
+		
 		const passwd = await AsyncStorage.getItem('passwd');
 		dispatch({type: 'CHANGE_PASSWD', passwd: passwd}); // Login Passwd
 
-		const name = await AsyncStorage.getItem('name');
-		dispatch({type: 'FETCH_ID', name: name}); // User ID
+		
 	      
 	}
 
