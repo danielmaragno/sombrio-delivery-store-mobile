@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Alert, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { Button, Avatar } from 'react-native-elements';
+import { View, Alert, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
+import { Button, Avatar, FormInput } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { viewStyle, orderStatusMap, listItemStyle, openTagStyle } from '../colors';
 import { TextInputMask } from 'react-native-masked-text';
@@ -25,6 +25,19 @@ class Home extends React.Component {
 		})
 	}
 
+	setOperatingTime(operatingTime) {
+		this.props.dispatch({
+			type: 'SET_USER_OPERARING_TIME',
+			operatingTime: operatingTime
+		});
+	}
+	setSlogan(slogan) {
+		this.props.dispatch({
+			type: 'SET_USER_SLOGAN',
+			slogan: slogan
+		});
+	}
+
 	handleOpenButton() {
 		const { dispatch, user} = this.props;
 
@@ -34,7 +47,11 @@ class Home extends React.Component {
 	handleUpdateButton() {
 		const { dispatch, user } = this.props;
 
-		dispatch(updatePos(user.token, {deliveryPrice: user.deliveryPrice}));
+		dispatch(updatePos(user.token, {
+			deliveryPrice: user.deliveryPrice,
+			operatingTime: user.operatingTime,
+			slogan: user.slogan
+		}));
 	}
 
 	render() {
@@ -59,7 +76,23 @@ class Home extends React.Component {
 						</Text>
 					</View>
 
-					<View style={{marginTop: 35, padding: 15}}>
+					<View style={{marginTop:20, padding: 15}}>
+						<Text style={{fontWeight: 'bold'}}>
+							Slogan / Descrição / Oferta
+						</Text>
+						<TextInput 
+							style={{
+								color: '#444',
+								fontSize: 18
+							}}
+							multiline={true}
+							value={user.slogan}
+							onChangeText={this.setSlogan.bind(this)}
+							placeholder={"Ex: Tudo em 4x sem juros!"}
+						/>
+					</View>
+
+					<View style={{padding: 15}}>
 						<Text style={{fontWeight: 'bold'}}>
 							Taxa de Entrega
 						</Text>
@@ -75,6 +108,20 @@ class Home extends React.Component {
 							type={'money'}
 							value={user.deliveryPrice/100}
 							onChangeText={this.setDeliveryPrice.bind(this)}
+						/>
+					</View>
+					<View style={{padding: 15}}>
+						<Text style={{fontWeight: 'bold'}}>
+							Horário de Funcionamento
+						</Text>
+						<TextInput 
+							style={{
+								color: '#444',
+								fontSize: 18
+							}}
+							multiline={true}
+							value={user.operatingTime}
+							onChangeText={this.setOperatingTime.bind(this)}
 						/>
 					</View>
 

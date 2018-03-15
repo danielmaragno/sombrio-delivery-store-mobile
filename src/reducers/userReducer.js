@@ -7,6 +7,8 @@ const initialState = {
 	image: null,
 	open: null,
 	deliveryPrice: null,
+	slogan: null,
+	operatingTime: null,
 
 	openIsLoading: false,
 	updateIsLoading: false
@@ -23,6 +25,8 @@ export default function reducer(state=initialState, action){
 				image: action.user.image,
 				open: action.user.open,
 				deliveryPrice: action.user.deliveryPrice,
+				slogan: action.user.slogan,
+				operatingTime: action.user.operatingTime
 			}
 		}
 		case 'FETCH_TOKEN': {
@@ -35,6 +39,13 @@ export default function reducer(state=initialState, action){
 		case 'SET_USER_OPEN': {
 			return {...state, open: action.open}
 		}
+		case 'SET_USER_OPERARING_TIME':{
+			return {...state, operatingTime: action.operatingTime}
+		}
+		case 'SET_USER_SLOGAN':{
+			return {...state, slogan: action.slogan}
+		}
+
 		case 'SET_OPEN_IS_LOADING': {
 			return {...state, openIsLoading: action.openIsLoading}
 		}
