@@ -2,7 +2,8 @@ const initialState = {
 	order: {},
 
 	visible: false,
-	updateOrderStatusLoading: false
+	updateOrderStatusLoading: false,
+	cancelOrderStatusLoading: false // special for cancel buttom
 }
 
 export default function reducer(state=initialState, action) {
@@ -27,6 +28,9 @@ export default function reducer(state=initialState, action) {
 
 		case 'SET_UPDATE_ORDER_STATUS_IS_LOADING': {
 			return {...state, updateOrderStatusLoading: action.updateOrderStatusLoading}
+		}
+		case 'SET_CANCEL_ORDER_STATUS_IS_LOADING': {
+			return {...state, cancelOrderStatusLoading: action.cancelOrderStatusLoading}
 		}
 	}
 

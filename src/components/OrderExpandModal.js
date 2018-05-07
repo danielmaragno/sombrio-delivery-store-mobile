@@ -33,7 +33,7 @@ class OrderExpandModal extends React.Component {
 	render() {
 
 		const props = this.props;
-		const { order, updateOrderStatusLoading } = this.props.orderModal;
+		const { order, updateOrderStatusLoading, cancelOrderStatusLoading } = this.props.orderModal;
 
 		return (
 			<Modal
@@ -115,7 +115,7 @@ class OrderExpandModal extends React.Component {
 							containerViewStyle={{width: '50%', marginLeft:0}}
 							backgroundColor={orderStatusMap.canceled.color}
 							onPress={() => this.updateOrderStatus('canceled')}
-							loading={updateOrderStatusLoading}
+							loading={cancelOrderStatusLoading}
 						/>
 					</View>
 

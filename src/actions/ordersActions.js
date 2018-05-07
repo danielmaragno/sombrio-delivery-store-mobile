@@ -31,7 +31,12 @@ export function fetchOrders(token, data) {
 export function updateOrderStatus(token, order_id, data) {
 	// data = status & pos_comentario
 	return (dispatch) => {
-		dispatch({type: 'SET_UPDATE_ORDER_STATUS_IS_LOADING', updateOrderStatusLoading: true})
+		if(data.status === 'canceled'){
+			dispatch({type: 'SET_CANCEL_ORDER_STATUS_IS_LOADING', cancelOrderStatusLoading: true})
+		}
+		else{
+			dispatch({type: 'SET_UPDATE_ORDER_STATUS_IS_LOADING', updateOrderStatusLoading: true})
+		}
 
 		request('/order/'+order_id+'/status', 'PUT', {data: data}, token)
 
@@ -39,6 +44,7 @@ export function updateOrderStatus(token, order_id, data) {
 			if(response.ok){
 				dispatch({type: 'SET_ORDER_STATUS', order_id: order_id, status: data.status})				
 				dispatch({type: 'SET_UPDATE_ORDER_STATUS_IS_LOADING', updateOrderStatusLoading: false})
+				dispatch({type: 'SET_CANCEL_ORDER_STATUS_IS_LOADING', cancelOrderStatusLoading: false})
 				dispatch({type: 'SET_ORDER_MODAL_VISIBLE', visible: false})
 			}
 		})
