@@ -34,7 +34,7 @@ class OrderExpandModal extends React.Component {
 
 		const props = this.props;
 		const { order, updateOrderStatusLoading, cancelOrderStatusLoading } = this.props.orderModal;
-
+		
 		return (
 			<Modal
 				visible={props.visible}

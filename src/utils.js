@@ -19,12 +19,19 @@ export function formatAddress(address) {
 	let formatedString = "";
 	
 	if(address){
-		const addressSplited = address.split(';');
-		for(let i in addressSplited){
-			if(addressSplited[i]){
-				formatedString += addressSplited[i]+'\n';
-			}
+		formatedString  = address.rua+", "+address.numero+"\n";
+		
+		if(address.complemento){
+			formatedString += address.complemento+"\n"
 		}
+		if(address.referencia){
+			formatedString += address.referencia+"\n"
+		}
+
+		formatedString += address.bairro+"\n"
+		formatedString += address.cidade;
+
+		return formatedString.trim();
 	}
-	return formatedString.trim();
+	
 }
