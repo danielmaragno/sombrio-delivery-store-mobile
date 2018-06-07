@@ -7,12 +7,24 @@ import { viewStyle, orderStatusMap, listItemStyle, openTagStyle } from '../color
 import { TextInputMask } from 'react-native-masked-text';
 import Header from './Header';
 
+import OneSignal from 'react-native-onesignal';
+
 import { updatePosOpen, updatePos } from '../actions/userActions';
 
 class Home extends React.Component {
 	
 	constructor(props) {
 		super(props);
+	}
+
+	componentWillMount() {
+		OneSignal.addEventListener('opened', () => {
+			this.props.navigation.navigate('Orders');
+		});
+	}
+
+	componentWillUnmount() {
+		OneSignal.removeEventListener('opened');
 	}
 
 	setDeliveryPrice(deliveryPrice){
